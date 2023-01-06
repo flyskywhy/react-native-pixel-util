@@ -14,18 +14,6 @@ var pixelUtil= require('pixel-util');
 console.log(pixelUtil); //object
 ```
 
-### Via bower
-
-```bash
-$ bower install pixel-util --save
-```
-```html
-<script src="bower_components/pixel-util/pixel-util.min.js"></script>
-<script>
-  console.log(pixelUtil); //object
-</script>
-```
-
 # API
 
 ## `.createBuffer`(file) -> Promise.then(`buffer`)

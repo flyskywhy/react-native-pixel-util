@@ -1,4 +1,3 @@
-ui: jasmine2
 browsers:
   - name: chrome
     version: 39..latest
@@ -16,10 +15,8 @@ browsers:
     version: 4.1..latest
 
 browserify:
-  - transform: coffeeify
   - transform: brfs
   - options:
       extensions:
         - .js
         - .json
-        - .coffee

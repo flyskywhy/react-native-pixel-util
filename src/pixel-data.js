@@ -6,7 +6,6 @@
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
 // Dependencies
-const Promise = require('bluebird');
 const { PixelType } = require('./pixel-type');
 
 // Note: API for browsers

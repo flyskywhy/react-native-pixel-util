@@ -7,7 +7,6 @@
  */
 // Dependencies
 let fs, request;
-const Promise = require('bluebird');
 const { PixelData } = require('./pixel-data');
 
 if (typeof window === 'undefined' || window === null) {

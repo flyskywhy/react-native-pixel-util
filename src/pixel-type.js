@@ -7,8 +7,6 @@
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
 // Dependencies
-const Promise = require('bluebird');
-
 const imageType = require('image-type');
 const mime = require('mime');
 
