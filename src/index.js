@@ -6,13 +6,9 @@
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
 // Dependencies
-let fs, request;
-const { PixelData } = require('./pixel-data');
-
-if (typeof window === 'undefined' || window === null) {
-  request = require('request');
-  fs = require('fs');
-}
+import ReactNativeBlobUtil from 'react-native-blob-util';
+import {PixelData} from './pixel-data';
+import {Buffer} from 'buffer';
 
 // Public
 class PixelUtil extends PixelData {
@@ -49,31 +45,21 @@ class PixelUtil extends PixelData {
   }
 
   fetchFile(path) {
-    if (typeof window === 'undefined' || window === null) {
-      return Promise.resolve(fs.readFileSync(path));
-    } else {
-      return this.fetchBuffer(path);
-    }
+    return new Promise(function(resolve, reject) {
+      if (typeof ReactNativeBlobUtil !== 'undefined' && ReactNativeBlobUtil !== null) {
+        ReactNativeBlobUtil.fs.readFile(path, 'ascii').then(data => {
+          return resolve(new Uint8Array(data));
+        }, error => {
+          reject(error.message);
+        });
+      } else {
+        reject('react-native-pixel-util need npm install react-native-blob-util');
+      }
+    });
   }
 
   fetchBuffer(url) {
-    if (typeof window === 'undefined' || window === null) {
-      return new Promise(function(resolve, reject) {
-        return request({ url, encoding: null }, function(
-          error,
-          response,
-          buffer
-        ) {
-          if (error != null) {
-            return reject(error);
-          }
-
-          return resolve(buffer);
-        });
-      });
-    } else {
-      return this.fetchArrayBuffer(url);
-    }
+    return this.fetchArrayBuffer(url);
   }
 
   fetchArrayBuffer(url) {
@@ -96,5 +82,5 @@ class PixelUtil extends PixelData {
   }
 }
 
-module.exports = new PixelUtil();
-module.exports.PixelUtil = PixelUtil;
+export default new PixelUtil();
+export {PixelUtil};

@@ -6,7 +6,8 @@
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
 // Dependencies
-const { PixelType } = require('./pixel-type');
+import {PixelType} from './pixel-type';
+import ImageData from '@canvas/image-data';
 
 // Note: API for browsers
 
@@ -95,20 +96,7 @@ class PixelData extends PixelType {
   }
 
   createImageData(width, height) {
-    const U8CA =
-      typeof Uint8ClampedArray !== 'undefined' && Uint8ClampedArray !== null
-        ? Uint8ClampedArray
-        : Uint8Array;
-
-    if (typeof document !== 'undefined' && document !== null) {
-      const context = document.createElement('canvas').getContext('2d');
-
-      return context.createImageData(width, height);
-    } else {
-      const imageData = { width, height };
-      imageData.data = new U8CA(width * height * 4);
-      return imageData;
-    }
+    return new ImageData(width, height);
   }
 
   set(to, from) {
@@ -137,5 +125,5 @@ class PixelData extends PixelType {
   }
 }
 
-module.exports = new PixelData();
-module.exports.PixelData = PixelData;
+export default new PixelData();
+export {PixelData};

@@ -5,7 +5,7 @@
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
 // Dependencies
-const pixelUtil = require('../src');
+const pixelUtil = require('../src').default;
 
 // Fixtures
 const fixtureImages = require('fixture-images');
@@ -20,7 +20,7 @@ describe('.getTypeof', function() {
 
     // Fixed #1
     fixture =
-      'C:\\Users\\IEUser\\Downloads\\pixel-util\\node_modules\\fixture-images\\still.WEBP';
+      '/home/flyskywhy/proj/react-native-pixel-util/node_modules/fixture-images/still.WEBP';
 
     type = pixelUtil.getTypeof(fixture);
     return expect(type).toBe('path');

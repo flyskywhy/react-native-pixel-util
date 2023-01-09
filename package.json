@@ -4,10 +4,6 @@
   "description": "Utilities of pixel",
 
   "main": "src",
-  "browser": {
-    "fs": false,
-    "request": false
-  },
 
   "scripts": {
     "localhost": "zuul test --local 59798 --open",
@@ -24,8 +20,7 @@
 
   "dependencies": {
     "image-type": "^2.0.2",
-    "mime": "^1.3.4",
-    "request": "^2.65.0"
+    "react-native-filereader": "1.0.5"
   },
   "devDependencies": {
     "brfs": "^1.4.0",
@@ -36,6 +31,10 @@
     "object-parser-cli": "0.0.1-alpha.0",
     "uglify-js": "^2.4.23",
     "zuul": "^3.0.0"
+  },
+  "peerDependencies": {
+    "react-native": "*",
+    "react-native-blob-util": "*"
   },
 
   "keywords": [

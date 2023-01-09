@@ -7,11 +7,13 @@
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
 // Dependencies
-const imageType = require('image-type');
-const mime = require('mime');
+import imageType from 'image-type';
+import mime from 'react-native-mime-types';
+import FileReader from 'react-native-filereader';
+import {Buffer} from 'buffer';
 
 // Mime settings
-mime.define({ 'image/vnd.ms-photo': ['jxr'] });
+// mime.define({ 'image/vnd.ms-photo': ['jxr'] });
 mime.extensions['image/vnd.ms-photo'] = 'jxr';
 mime.extensions['image/jpeg'] = 'jpg';
 mime.extensions['image/tiff'] = 'tif';
@@ -128,7 +130,7 @@ class PixelType {
           case !file.match(/^data:image\//):
             return 'datauri';
 
-          case !file.match(/^(?:\w:)?[\w\-\/\\.~ ]+$/):
+          case !file.replace(/^file:\//, '').match(/^\/\/?[\w\-.~ ]/):
             return 'path';
 
           default:
@@ -169,10 +171,6 @@ class PixelType {
 
   readAsArrayBuffer(blob) {
     return new Promise(function(resolve, reject) {
-      if (typeof FileReader === 'undefined' || FileReader === null) {
-        return reject(new ArrayBuffer(0));
-      }
-
       const reader = new FileReader();
       reader.readAsArrayBuffer(blob);
       return (reader.onload = () => resolve(reader.result));
@@ -189,5 +187,5 @@ class PixelType {
   }
 }
 
-module.exports = new PixelType();
-module.exports.PixelType = PixelType;
+export default new PixelType();
+export {PixelType};

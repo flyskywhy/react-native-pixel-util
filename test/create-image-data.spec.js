@@ -5,7 +5,7 @@
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
 // Dependencies
-const pixelUtil = require('../src');
+const pixelUtil = require('../src').default;
 
 it('createImageData', function() {
   const imageData = pixelUtil.createImageData(59, 798);
