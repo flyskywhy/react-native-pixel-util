@@ -36,7 +36,7 @@ pixelUtil.createBuffer(url).then(function(buffer){
   console.log(buffer);// <Buffer 47 49 46 38 39 ...
 });
 
-var datauri= 'data:image/png;base64,iVBORw0KGgoAAA...';
+var datauri= 'data:image/png;base64,iVBORw0KGgoAAA...'; // e.g. comes from [data-uri.macro](https://github.com/Andarist/data-uri.macro)
 pixelUtil.createBuffer(datauri).then(function(buffer){
   console.log(buffer);// <Buffer 47 49 46 38 39 ...
 });
@@ -102,7 +102,7 @@ pixelUtil.detect(url).then(function(types){
 });
 //-> {ext: 'png', mime: 'image/png', type: 'url'}
 
-var datauri= 'data:image/png;base64,iVBORw0KGgoAAA...';
+var datauri= 'data:image/png;base64,iVBORw0KGgoAAA...'; // e.g. comes from [data-uri.macro](https://github.com/Andarist/data-uri.macro)
 pixelUtil.detect(datauri).then(function(types){
   console.log(types);
 });
@@ -175,7 +175,7 @@ var url= 'http://example.com/foo.png';
 pixelUtil.get(url);
 //-> {ext: 'png', mime: 'image/png', type: 'url'}
 
-var datauri= 'data:image/png;base64,iVBORw0KGgoAAA...';
+var datauri= 'data:image/png;base64,iVBORw0KGgoAAA...'; // e.g. comes from [data-uri.macro](https://github.com/Andarist/data-uri.macro)
 pixelUtil.get(datauri);
 //-> {ext: 'png', mime: 'image/png', type: 'datauri'}
 
@@ -228,7 +228,7 @@ var url= 'http://example.com/foo.png';
 pixelUtil.getTypeof(url);
 //-> url
 
-var datauri= 'data:image/png;base64,iVBORw0KGgoAAA...';
+var datauri= 'data:image/png;base64,iVBORw0KGgoAAA...'; // e.g. comes from [data-uri.macro](https://github.com/Andarist/data-uri.macro)
 pixelUtil.getTypeof(datauri);
 //-> datauri
 
@@ -295,7 +295,7 @@ pixelUtil.fetchImageData(url).then(function(imageData){
   console.log(imageData.height);// 73
 });
 
-var datauri= 'data:image/png;base64,iVBORw0KGgoAAA...';
+var datauri= 'data:image/png;base64,iVBORw0KGgoAAA...'; // e.g. comes from [data-uri.macro](https://github.com/Andarist/data-uri.macro)
 pixelUtil.fetchImageData(datauri).then(function(imageData){
   console.log(imageData instanceof ImageData);// true
   console.log(imageData.width);// 73
