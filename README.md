@@ -383,6 +383,35 @@ pixelUtil.fetchImageData(image).then(function(imageData){
 });
 ```
 
+## `.resizeImageDatas`(imageDatas, width, height, algorithm) -> newImageDatas
+
+return `newImageDatas` is Array contains one or more `ImageData` has `width` and `height` and also keep other property of `imageDatas` e.g. `delay` comes from [react-native-pixel-gif](https://github.com/flyskywhy/react-native-pixel-gif).
+> `algorithms` ref to [resize-image-data](https://github.com/LinusU/resize-image-data).
+
+```js
+import pixel from 'react-native-pixel';
+import pixelUtil from 'react-native-pixel-util';
+
+const file = 'https://59naga.github.io/fixtures/animated.GIF';
+const imageDatas = await pixel(file);
+console.log(imageDatas);
+//-> <ImageData {width: 73, height: 73, data: <Uint8ClampedArray ...>, delay: 1000, disposal: 0, ...}>
+//-> <ImageData {width: 73, height: 73, data: <Uint8ClampedArray ...>, delay: 900, disposal: 0, ...}>
+//-> <ImageData {width: 73, height: 73, data: <Uint8ClampedArray ...>, delay: 800, disposal: 0, ...}>
+// ...
+const newImageDatas = pixelUtil.resizeImageDatas(
+  imageDatas,
+  20,
+  20,
+  'nearest-neighbor',
+);
+console.log(newImageDatas);
+//-> <ImageData {width: 20, height: 20, data: <Uint8ClampedArray ...>, delay: 1000, disposal: 0, ...}>
+//-> <ImageData {width: 20, height: 20, data: <Uint8ClampedArray ...>, delay: 900, disposal: 0, ...}>
+//-> <ImageData {width: 20, height: 20, data: <Uint8ClampedArray ...>, delay: 800, disposal: 0, ...}>
+// ...
+```
+
 # Related projects
 * [react-native-pixel](https://github.com/flyskywhy/react-native-pixel)
 * __react-native-pixel-util__

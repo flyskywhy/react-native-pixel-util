@@ -8,6 +8,7 @@
 // Dependencies
 import {PixelType} from './pixel-type';
 import ImageData from '@canvas/image-data';
+import resizeImageData from 'resize-image-data';
 
 // Note: API for browsers
 
@@ -122,6 +123,25 @@ class PixelData extends PixelType {
     } else {
       return to.data.set(from.data);
     }
+  }
+
+  resizeImageDatas(images, width, height, algorithm) {
+    return images.map((imageData) => {
+      const newImageData = resizeImageData(
+        imageData,
+        width,
+        height,
+        algorithm,
+      );
+      for (var key in imageData) {
+        if (key === 'width' || key === 'height' || key === 'data' || key === 'colorSpace') {
+          continue;
+        }
+        newImageData[key] = imageData[key];
+      }
+
+      return newImageData;
+    });
   }
 }
 

@@ -20,7 +20,8 @@
 
   "dependencies": {
     "image-type": "^2.0.2",
-    "react-native-filereader": "1.0.6"
+    "react-native-filereader": "1.0.6",
+    "resize-image-data": "0.3.1"
   },
   "devDependencies": {
     "brfs": "^1.4.0",
