@@ -1,16 +1,20 @@
-# PixelUtil [![NPM version][npm-image]][npm] [![Build Status][travis-image]][travis] [![Coverage Status][coveralls-image]][coveralls]
+# react-native-pixel-util
 
-[![Sauce Test Status][sauce-image]][sauce]
+[![npm version](http://img.shields.io/npm/v/react-native-pixel-util.svg?style=flat-square)](https://npmjs.org/package/react-native-pixel-util "View this project on npm")
+[![npm downloads](http://img.shields.io/npm/dm/react-native-pixel-util.svg?style=flat-square)](https://npmjs.org/package/react-native-pixel-util "View this project on npm")
+[![npm licence](http://img.shields.io/npm/l/react-native-pixel-util.svg?style=flat-square)](https://npmjs.org/package/react-native-pixel-util "View this project on npm")
+[![Platform](https://img.shields.io/badge/platform-ios%20%7C%20android%20%7C%20web-989898.svg?style=flat-square)](https://npmjs.org/package/react-native-pixel-util "View this project on npm")
 
 ## Installation
 
-### Via npm
-
 ```bash
-$ npm install pixel-util --save
+$ npm install react-native-pixel-util
 ```
+For RN >= 0.65, run `npm install react-native-blob-util`.
+
+For RN < 0.65, run `npm install react-native-blob-util@0.16.3`, and patch manually to [fix: with react-native-web product build will export 'URIUtil' (reexported as 'URIUtil') was not found](https://github.com/RonRadtke/react-native-blob-util/pull/201/files).
 ```js
-var pixelUtil= require('pixel-util');
+var pixelUtil= require('react-native-pixel-util');
 console.log(pixelUtil); //object
 ```
 
@@ -21,7 +25,8 @@ console.log(pixelUtil); //object
 Create buffer of an argument.
 
 ```js
-var path= 'foo.png';
+// var path = '/storage/emulated/0/Pictures/gifs/ani (1).gif' // Android
+var path = 'file:///private/var/mobile/Containers/.../foo.png'; // iOS
 pixelUtil.createBuffer(path).then(function(buffer){
   console.log(buffer);// <Buffer 47 49 46 38 39 ...
 });
@@ -41,7 +46,7 @@ pixelUtil.createBuffer(binary).then(function(buffer){
   console.log(buffer);// <Buffer 47 49 46 38 39 ...
 });
 
-var buffer= fs.readFileSync('foo.png');
+var buffer = fs.readFileSync('foo.png'); // actually readFile by react-native-blob-util or react-native-fs
 pixelUtil.createBuffer(buffer).then(function(buffer){
   console.log(buffer);// <Buffer 47 49 46 38 39 ...
 });
@@ -84,7 +89,8 @@ pixelUtil.createBuffer(image).then(function(buffer){
 > Asynchronous detection the image type and object type of an argument.
 
 ```js
-var path= 'foo.png';
+// var path = '/storage/emulated/0/Pictures/gifs/ani (1).gif' // Android
+var path = 'file:///private/var/mobile/Containers/.../foo.png'; // iOS
 pixelUtil.detect(path).then(function(types){
   console.log(types);
 });
@@ -108,7 +114,7 @@ pixelUtil.detect(binary).then(function(types){
 });
 //-> {ext: 'png', mime: 'image/png', type: 'binary'}
 
-var buffer= fs.readFileSync('foo.png');
+var buffer = fs.readFileSync('foo.png'); // actually readFile by react-native-blob-util or react-native-fs
 pixelUtil.detect(buffer).then(function(types){
   console.log(types);
 });
@@ -156,10 +162,12 @@ pixelUtil.detect(image).then(function(types){
 ## `.get`(file) -> `{ext,mime,type}`
 
 > Synchronous detection the image type and object type of an argument.
+
 > __Blob/File is deprecate__. Because analyze using [FileReaderSync](https://w3c.github.io/FileAPI/#FileReaderSync). But has not been implemented in the current browsers...
 
 ```js
-var path= 'foo.png';
+// var path = '/storage/emulated/0/Pictures/gifs/ani (1).gif' // Android
+var path = 'file:///private/var/mobile/Containers/.../foo.png'; // iOS
 pixelUtil.get(path);
 //-> {ext: 'png', mime: 'image/png', type: 'path'}
 
@@ -175,7 +183,7 @@ var binary= 'PNG\n\nIHDR``¶j\n        0PLT';
 pixelUtil.get(binary);
 //-> {ext: 'png', mime: 'image/png', type: 'binary'}
 
-var buffer= fs.readFileSync('foo.png');
+var buffer = fs.readFileSync('foo.png'); // actually readFile by react-native-blob-util or react-native-fs
 pixelUtil.get(buffer);
 //-> {ext: 'png', mime: 'image/png', type: 'buffer'}
 
@@ -211,7 +219,8 @@ pixelUtil.get(image);
 Detect the object type of an argument.
 
 ```js
-var path= 'foo.png';
+// var path = '/storage/emulated/0/Pictures/gifs/ani (1).gif' // Android
+var path = 'file:///private/var/mobile/Containers/.../foo.png'; // iOS
 pixelUtil.getTypeof(path);
 //-> path
 
@@ -227,7 +236,7 @@ var binary= 'PNG\n\nIHDR``¶j\n        0PLT';
 pixelUtil.getTypeof(binary);
 //-> binary
 
-var buffer= fs.readFileSync('foo.png');
+var buffer = fs.readFileSync('foo.png'); // actually readFile by react-native-blob-util or react-native-fs
 pixelUtil.getTypeof(buffer);
 //-> buffer
 
@@ -259,10 +268,9 @@ pixelUtil.getTypeof(image);
 
 ## `.createImageData`(width,height) -> imageData
 Return imageData has `width` and `height`.
-> Return Object like the ImageData if in Node.js
 
 ```js
-pixelUtil.createImageData 59,798
+pixelUtil.createImageData(59, 798);
 //-> <ImageData {width: 59, height: 798, data: <Uint8ClampedArray ...>}>
 ```
 
@@ -272,7 +280,8 @@ pixelUtil.createImageData 59,798
 Create ImageData of an argument.
 
 ```js
-var path= 'foo.png';
+// var path = '/storage/emulated/0/Pictures/gifs/ani (1).gif' // Android
+var path = 'file:///private/var/mobile/Containers/.../foo.png'; // iOS
 pixelUtil.fetchImageData(path).then(function(imageData){
   console.log(imageData instanceof ImageData);// true
   console.log(imageData.width);// 73
@@ -300,7 +309,7 @@ pixelUtil.fetchImageData(binary).then(function(imageData){
   console.log(imageData.height);// 73
 });
 
-var buffer= fs.readFileSync('foo.png');
+var buffer = fs.readFileSync('foo.png'); // actually readFile by react-native-blob-util or react-native-fs
 pixelUtil.fetchImageData(buffer).then(function(imageData){
   console.log(imageData instanceof ImageData);// true
   console.log(imageData.width);// 73
@@ -375,26 +384,18 @@ pixelUtil.fetchImageData(image).then(function(imageData){
 ```
 
 # Related projects
-* __pixel-util__
-* [pixel-gif](https://github.com/59naga/pixel-gif-/)
-* [pixel-png](https://github.com/59naga/pixel-png/)
-* [pixel-jpg](https://github.com/59naga/pixel-jpg/)
-* [pixel-bmp](https://github.com/59naga/pixel-bmp/)
-* [pixel](https://github.com/59naga/pixel/)
-* [pixel-to-ansi](https://github.com/59naga/pixel-to-ansi/)
-* [pixel-to-svg](https://github.com/59naga/pixel-to-svg/)
+* [react-native-pixel](https://github.com/flyskywhy/react-native-pixel)
+* __react-native-pixel-util__
+* [react-native-pixel-gif](https://github.com/flyskywhy/react-native-pixel-gif)
+* [react-native-pixel-png](https://github.com/flyskywhy/react-native-pixel-png)
+* [react-native-pixel-jpg](https://github.com/flyskywhy/react-native-pixel-jpg)
+* [react-native-pixel-bmp](https://github.com/flyskywhy/react-native-pixel-bmp)
+* [react-native-pixel-webp](https://github.com/flyskywhy/react-native-pixel-webp)
+* [pixel-to-ansi](https://github.com/59naga/pixel-to-ansi)
+* [pixel-to-svg](https://github.com/59naga/pixel-to-svg)
 
 License
 ---
 [MIT][License]
 
 [License]: http://59naga.mit-license.org/
-
-[sauce-image]: http://soysauce.berabou.me/u/59798/pixel-util.svg
-[sauce]: https://saucelabs.com/u/59798
-[npm-image]:https://img.shields.io/npm/v/pixel-util.svg?style=flat-square
-[npm]: https://npmjs.org/package/pixel-util
-[travis-image]: http://img.shields.io/travis/59naga/pixel-util.svg?style=flat-square
-[travis]: https://travis-ci.org/59naga/pixel-util
-[coveralls-image]: http://img.shields.io/coveralls/59naga/pixel-util.svg?style=flat-square
-[coveralls]: https://coveralls.io/r/59naga/pixel-util?branch=master

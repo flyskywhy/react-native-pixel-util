@@ -1,7 +1,7 @@
 {
-  "name": "pixel-util",
-  "version": "0.0.2",
-  "description": "Utilities of pixel",
+  "name": "react-native-pixel-util",
+  "version": "1.0.0",
+  "description": "Utilities of pixel for React Native",
 
   "main": "src",
 
@@ -20,7 +20,7 @@
 
   "dependencies": {
     "image-type": "^2.0.2",
-    "react-native-filereader": "1.0.5"
+    "react-native-filereader": "1.0.6"
   },
   "devDependencies": {
     "brfs": "^1.4.0",
@@ -38,25 +38,32 @@
   },
 
   "keywords": [
-    "path",
-    "url",
-    "datauri",
+    "blob",
     "buffer",
+    "datauri",
+    "image",
+    "imagedata",
+    "path",
+    "react-native",
     "uint8array",
     "uint8clampedarray",
-    "blob",
-    "image"
+    "url"
   ],
   "author": "59naga <i59naga@icloud.com> (http://berabou.me)",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/59naga/pixel-util.git"
+    "url": "git+https://github.com/flyskywhy/react-native-pixel-util.git"
   },
-  "author": "59naga <i59naga@icloud.com> (http://berabou.me)",
-  "license": "MIT",
+  "contributors": [
+    {
+      "name": "Li Zheng",
+      "email": "flyskywhy@gmail.com",
+      "url": "https://github.com/flyskywhy"
+    }
+  ],
   "bugs": {
-    "url": "https://github.com/59naga/pixel-util/issues"
+    "url": "https://github.com/flyskywhy/react-native-pixel-util/issues"
   },
-  "homepage": "https://github.com/59naga/pixel-util#readme"
+  "homepage": "https://github.com/flyskywhy/react-native-pixel-util#readme"
 }
