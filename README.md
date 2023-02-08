@@ -389,7 +389,7 @@ return `newImageDatas` is Array contains one or more `ImageData` has `width` and
 > `algorithms` ref to [resize-image-data](https://github.com/LinusU/resize-image-data).
 
 ```js
-import pixel from 'react-native-pixel';
+import pixel from 'react-native-pixel-image';
 import pixelUtil from 'react-native-pixel-util';
 
 const file = 'https://59naga.github.io/fixtures/animated.GIF';
@@ -413,7 +413,7 @@ console.log(newImageDatas);
 ```
 
 # Related projects
-* [react-native-pixel](https://github.com/flyskywhy/react-native-pixel)
+* [react-native-pixel-image](https://github.com/flyskywhy/react-native-pixel-image)
 * __react-native-pixel-util__
 * [react-native-pixel-gif](https://github.com/flyskywhy/react-native-pixel-gif)
 * [react-native-pixel-png](https://github.com/flyskywhy/react-native-pixel-png)
