@@ -1,15 +1,11 @@
 {
   "name": "react-native-pixel-util",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Utilities of pixel for React Native",
-
   "main": "src",
-
   "scripts": {
     "localhost": "zuul test --local 59798 --open",
-
     "test-cloud": "zuul test",
-
     "update": "git tag v$(opc package version) && git push --tags"
   },
   "config": {
@@ -17,7 +13,6 @@
       "pre-commit": ""
     }
   },
-
   "dependencies": {
     "image-type": "^2.0.2",
     "react-native-filereader": "1.0.6",
@@ -37,7 +32,6 @@
     "react-native": "*",
     "react-native-blob-util": "*"
   },
-
   "keywords": [
     "blob",
     "buffer",
